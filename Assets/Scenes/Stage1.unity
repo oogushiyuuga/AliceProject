@@ -139,6 +139,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: BasickInventory
       objectReference: {fileID: 0}
+    - target: {fileID: 1205552527437084445, guid: 3234cd4e0743f4803a01be4833d54dd5, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2146746436556801230, guid: 3234cd4e0743f4803a01be4833d54dd5, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -152,6 +156,14 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3624439506112727212, guid: 3234cd4e0743f4803a01be4833d54dd5, type: 3}
+      propertyPath: objectPrefab
+      value: 
+      objectReference: {fileID: 547240449556642628, guid: ba8442d1e69be40efb213f26ceaf2892, type: 3}
+    - target: {fileID: 5523945007579978575, guid: 3234cd4e0743f4803a01be4833d54dd5, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -710209305, guid: 514599c5838354ec1921dfcc6775be02, type: 3}
+    - target: {fileID: 7354428782846565116, guid: 3234cd4e0743f4803a01be4833d54dd5, type: 3}
       propertyPath: objectPrefab
       value: 
       objectReference: {fileID: 547240449556642628, guid: ba8442d1e69be40efb213f26ceaf2892, type: 3}
@@ -238,6 +250,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects:
     - {fileID: 4021311346730726499, guid: 3234cd4e0743f4803a01be4833d54dd5, type: 3}
+    - {fileID: 3822806461694831995, guid: 3234cd4e0743f4803a01be4833d54dd5, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3234cd4e0743f4803a01be4833d54dd5, type: 3}

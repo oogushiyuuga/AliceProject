@@ -25,14 +25,13 @@ public class PlacedObject : MonoBehaviour
         isDragging = true;
 
         // ドラッグ中は、自分自身の当たり判定を消して、レイキャストが突き抜けるようにする
-        // （これをしないと、自分が邪魔で地面の座標が取れない）
         SetColliderEnabled(false);
 
         // --- 移動処理 ---
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         RaycastHit hit;
 
-        // 地面(Ground)にレイが当たっているか？
+        // Groundにレイが当たっているか？
         if (Physics.Raycast(ray, out hit, Mathf.Infinity, mySpawner.groundLayer))
         {
             // グリッドに合わせて移動
@@ -42,8 +41,7 @@ public class PlacedObject : MonoBehaviour
             float x = Mathf.Round(targetPos.x / gSize) * gSize;
             float z = Mathf.Round(targetPos.z / gSize) * gSize;
             
-            // 高さは固定（Spawnerの設定値があればそれを使う、なければ今の高さ）
-            // 前回 Spawner に placeHeight を追加した場合は mySpawner.placeHeight を使ってください
+            // 高さは固定
             transform.position = new Vector3(x, transform.position.y, z);
         }
     }
@@ -59,13 +57,12 @@ public class PlacedObject : MonoBehaviour
 
         if (mySpawner == null) return;
 
-        // ★スマホ対応の最重要ポイント★
-        // 指を離した場所が「UI（インベントリなど）」の上だった場合 → 削除（返却）
+        // 指を離した場所がインベントリの上だった場合、削除
         if (IsPointerOverUI())
         {
             Debug.Log("UIの上で離したので削除します");
             mySpawner.ReturnItem(); // インベントリに戻す
-            Destroy(gameObject);    // 自分を消す
+            Destroy(gameObject);
             return;
         }
 
@@ -81,7 +78,7 @@ public class PlacedObject : MonoBehaviour
             // 配置確定（新しい場所を記憶）
             originalPos = transform.position;
             
-            // ちょこっとエフェクト（音やパーティクル）を入れると気持ちいいです
+            // エフェクト（音やパーティクル）
         }
     }
 
@@ -119,7 +116,7 @@ public class PlacedObject : MonoBehaviour
         return true;
     }
 
-    // ★スマホ・PC両対応の「UIに触れているか」判定メソッド
+    // スマホ・PC両対応の「UIに触れているか」判定メソッド
     private bool IsPointerOverUI()
     {
         // PC（マウス）の場合
