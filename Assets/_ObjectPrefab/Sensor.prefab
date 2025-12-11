@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 5931892243663642718}
   - component: {fileID: 5179486319893325985}
   - component: {fileID: 7506009572319517476}
-  - component: {fileID: 3475842624442102645}
   m_Layer: 7
   m_Name: Sensor
   m_TagString: Untagged
@@ -110,20 +109,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &3475842624442102645
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2283224489869002981}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2c7ff79ea5df14f799b60995052268ad, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  sizeThreshold: 1.4
-  targetDoor: {fileID: 2283224489869002981}
 --- !u!1001 &5508712513214227038
 PrefabInstance:
   m_ObjectHideFlags: 0

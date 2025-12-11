@@ -940,7 +940,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1001 &1612017098
+--- !u!1001 &1472736060
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -948,55 +948,55 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 4100121886560015954, guid: 25d517680b2254f7687d675283ad5365, type: 3}
-      propertyPath: m_Name
-      value: SmallSensor
-      objectReference: {fileID: 0}
-    - target: {fileID: 7215426523067308924, guid: 25d517680b2254f7687d675283ad5365, type: 3}
+    - target: {fileID: 7764419225280906440, guid: bfbc95a360d25420189d390e2e50618a, type: 3}
       propertyPath: m_LocalPosition.x
       value: 21
       objectReference: {fileID: 0}
-    - target: {fileID: 7215426523067308924, guid: 25d517680b2254f7687d675283ad5365, type: 3}
+    - target: {fileID: 7764419225280906440, guid: bfbc95a360d25420189d390e2e50618a, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.0000002
+      value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 7215426523067308924, guid: 25d517680b2254f7687d675283ad5365, type: 3}
+    - target: {fileID: 7764419225280906440, guid: bfbc95a360d25420189d390e2e50618a, type: 3}
       propertyPath: m_LocalPosition.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7215426523067308924, guid: 25d517680b2254f7687d675283ad5365, type: 3}
+    - target: {fileID: 7764419225280906440, guid: bfbc95a360d25420189d390e2e50618a, type: 3}
       propertyPath: m_LocalRotation.w
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 7215426523067308924, guid: 25d517680b2254f7687d675283ad5365, type: 3}
+    - target: {fileID: 7764419225280906440, guid: bfbc95a360d25420189d390e2e50618a, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
-    - target: {fileID: 7215426523067308924, guid: 25d517680b2254f7687d675283ad5365, type: 3}
+    - target: {fileID: 7764419225280906440, guid: bfbc95a360d25420189d390e2e50618a, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
-    - target: {fileID: 7215426523067308924, guid: 25d517680b2254f7687d675283ad5365, type: 3}
+    - target: {fileID: 7764419225280906440, guid: bfbc95a360d25420189d390e2e50618a, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
-    - target: {fileID: 7215426523067308924, guid: 25d517680b2254f7687d675283ad5365, type: 3}
+    - target: {fileID: 7764419225280906440, guid: bfbc95a360d25420189d390e2e50618a, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7215426523067308924, guid: 25d517680b2254f7687d675283ad5365, type: 3}
+    - target: {fileID: 7764419225280906440, guid: bfbc95a360d25420189d390e2e50618a, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7215426523067308924, guid: 25d517680b2254f7687d675283ad5365, type: 3}
+    - target: {fileID: 7764419225280906440, guid: bfbc95a360d25420189d390e2e50618a, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8658524926553183023, guid: bfbc95a360d25420189d390e2e50618a, type: 3}
+      propertyPath: m_Name
+      value: DoorSencer
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 25d517680b2254f7687d675283ad5365, type: 3}
+  m_SourcePrefab: {fileID: 100100000, guid: bfbc95a360d25420189d390e2e50618a, type: 3}
 --- !u!1 &1661357775
 GameObject:
   m_ObjectHideFlags: 0
@@ -1380,4 +1380,4 @@ SceneRoots:
   - {fileID: 560809303}
   - {fileID: 446918075}
   - {fileID: 6274295647241521102}
-  - {fileID: 1612017098}
+  - {fileID: 1472736060}
