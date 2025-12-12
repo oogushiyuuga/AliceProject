@@ -1,75 +1,120 @@
 using UnityEngine;
-using System.Collections; // コルーチンに必要
+using System.Collections;
 
 public class PlayerMove : MonoBehaviour
 {
-    [SerializeField] private float baseSpeed = 5.0f; // 基本速度
-    private Rigidbody rb;
+    [SerializeField] private float baseSpeed = 5.0f;
+    [SerializeField] private Animator anim;
 
-    // 詰まり判定用
+    private Rigidbody rb;
     private float stuckTimer = 0f;
     private Vector3 lastPosition;
-
-    // ★追加: 速度倍率の管理
-    private float zoneMultiplier = 1.0f; // 減速フィールドなどの倍率
-    private float dashMultiplier = 1.0f; // ダッシュボードの倍率
+    
+    // 速度倍率
+    private float zoneMultiplier = 1.0f;
+    private float dashMultiplier = 1.0f;
 
     void Start()
     {
         rb = GetComponent<Rigidbody>();
+        
+        if (anim == null) anim = GetComponent<Animator>();
+
         lastPosition = transform.position;
+    }
+
+    void Update()
+    {
+        if (anim != null)
+        {
+            // GameManagerの状態がActionフェーズなら走る
+            bool isRunning = GameManager.Instance.CurrentState == GameManager.GameState.Action;
+            
+            // または、実際に動いているかで判定してもOK
+            // bool isRunning = rb.linearVelocity.sqrMagnitude > 0.1f;
+
+            anim.SetBool("IsRun", isRunning);
+        }
     }
 
     void FixedUpdate()
     {
-        // 1. 現在の最終的な速度を計算 (基本 × エリア補正 × ダッシュ補正)
+        // 速度計算
         float finalSpeed = baseSpeed * zoneMultiplier * dashMultiplier;
 
-        // 2. 移動処理
+        // 移動処理
         float yVelocity = rb.linearVelocity.y;
-        Vector3 moveVelocity = transform.right * finalSpeed; // finalSpeedを使う
-        rb.linearVelocity = new Vector3(moveVelocity.x, yVelocity, moveVelocity.z);
+        
+        // GameManagerがActionフェーズの時だけ前に進むように
+        if (GameManager.Instance.CurrentState == GameManager.GameState.Action)
+        {
+            Vector3 moveVelocity = transform.forward * finalSpeed;
+            rb.linearVelocity = new Vector3(moveVelocity.x, yVelocity, moveVelocity.z);
+        }
+        else
+        {
+            // 待機中は物理的な横移動を止める（重力はそのまま）
+            rb.linearVelocity = new Vector3(0, yVelocity, 0);
+        }
 
-        // --- 以下、既存の判定ロジック ---
+        // 落下・詰まり判定
         if (transform.position.y < -10f)
         {
             if(GameManager.Instance) GameManager.Instance.TriggerGameOver();
             return;
         }
 
-        float distanceMoved = Vector3.Distance(transform.position, lastPosition);
-        if (distanceMoved < 0.01f) 
+        // 設置フェーズ中は詰まり判定をしない
+        if (GameManager.Instance.CurrentState == GameManager.GameState.Action)
         {
-            stuckTimer += Time.fixedDeltaTime;
-            if (stuckTimer > 2.0f)
+            float distanceMoved = Vector3.Distance(transform.position, lastPosition);
+            if (distanceMoved < 0.01f) 
             {
-                if(GameManager.Instance) GameManager.Instance.TriggerGameOver();
+                stuckTimer += Time.fixedDeltaTime;
+                if (stuckTimer > 2.0f)
+                {
+                    if(GameManager.Instance) GameManager.Instance.TriggerGameOver();
+                }
             }
-        }
-        else
-        {
-            stuckTimer = 0f;
+            else
+            {
+                stuckTimer = 0f;
+            }
         }
         lastPosition = transform.position;
     }
 
-    // 外部から呼ぶ関数：ゾーン（乗っている間ずっと）
+    // 外部呼び出し用
+
     public void SetZoneSpeed(float multiplier)
     {
         zoneMultiplier = multiplier;
     }
 
-    // 外部から呼ぶ関数：ダッシュ（一瞬だけ）
     public void ApplyDash(float multiplier, float duration)
     {
-        // 既にダッシュ中なら上書きするためにコルーチンを一度止める処理を入れる
         StartCoroutine(DashCoroutine(multiplier, duration));
+    }
+
+    public void DoJump(float jumpForce)
+    {
+        // 物理挙動：一度Y速度をリセットして跳ねさせる
+        Vector3 velocity = rb.linearVelocity;
+        velocity.y = 0;
+        rb.linearVelocity = velocity;
+        
+        rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+
+        if (anim != null)
+        {
+            anim.SetTrigger("Jump");
+        }
     }
 
     private IEnumerator DashCoroutine(float multiplier, float duration)
     {
         dashMultiplier = multiplier;
-        yield return new WaitForSeconds(duration); // 指定時間待つ
-        dashMultiplier = 1.0f; // 元に戻す
+        yield return new WaitForSeconds(duration);
+        dashMultiplier = 1.0f;
     }
 }

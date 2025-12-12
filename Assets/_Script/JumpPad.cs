@@ -2,23 +2,14 @@ using UnityEngine;
 
 public class JumpPad : MonoBehaviour
 {
-    [SerializeField] private float jumpForce = 5.0f;
-
-    void Start()
-    {
-        
-    }
-
-    void Update()
-    {
-
-    }
+    [SerializeField] private float jumpForce = 3.0f;
 
     void OnTriggerEnter(Collider other)
     {
-        if(other.CompareTag("Player"))
+        if (other.TryGetComponent<PlayerMove>(out PlayerMove player))
         {
-            other.gameObject.GetComponent<Rigidbody>().AddForce(0, jumpForce, 0, ForceMode.Impulse);
+            // ジャンプ関数を呼ぶ
+            player.DoJump(jumpForce);
         }
     }
 }

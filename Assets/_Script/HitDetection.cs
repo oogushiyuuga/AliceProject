@@ -9,10 +9,10 @@ public class HitDetection : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            // 小さい時だけ
+            // 大きい時だけ
             if (other.transform.localScale.x > sizeThreshold)
             {
-                // 指定したドアを消す
+                // 指定した木箱を消す
                 if (targetDoor != null)
                 {
                     targetDoor.SetActive(false);
