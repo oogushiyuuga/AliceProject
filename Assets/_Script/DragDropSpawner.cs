@@ -116,7 +116,7 @@ public class DragDropSpawner : MonoBehaviour, IBeginDragHandler, IDragHandler, I
     {
         if (objectPrefab != null)
         {
-            GameObject obj = Instantiate(objectPrefab, position, Quaternion.identity);
+            GameObject obj = Instantiate(objectPrefab, position, objectPrefab.transform.rotation);
         
             PlacedObject placedObj = obj.GetComponent<PlacedObject>();
             if (placedObj != null)

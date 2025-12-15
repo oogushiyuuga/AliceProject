@@ -7,6 +7,9 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }
 
+    [SerializeField] private GameObject placementCamera;
+    [SerializeField] private GameObject playerCamera;
+
     [Header("UI設定")]
     [SerializeField] private GameObject resultCanvasPrefab;
     [SerializeField] private GameObject gameOverCanvasPrefab;
@@ -37,6 +40,9 @@ public class GameManager : MonoBehaviour
     public void SwitchToPlacementPhase()
     {
         CurrentState = GameState.Placement;
+        if (placementCamera != null) placementCamera.SetActive(true);
+
+        if (playerCamera != null) playerCamera.SetActive(false);
 
         if (playerMovementScript != null) playerMovementScript.enabled = false;
 
@@ -53,6 +59,9 @@ public class GameManager : MonoBehaviour
     public void OnStartActionButtonClicked()
     {
         CurrentState = GameState.Action;
+        if (placementCamera != null) placementCamera.SetActive(false);
+        
+        if (playerCamera != null) playerCamera.SetActive(true);
 
         if (playerMovementScript != null) playerMovementScript.enabled = true;
 
