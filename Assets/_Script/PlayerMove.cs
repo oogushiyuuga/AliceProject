@@ -3,7 +3,7 @@ using System.Collections;
 
 public class PlayerMove : MonoBehaviour
 {
-    [SerializeField] private float baseSpeed = 5.0f;
+    [SerializeField] private float baseSpeed = 3.0f;
     [SerializeField] private Animator anim;
 
     private Rigidbody rb;
