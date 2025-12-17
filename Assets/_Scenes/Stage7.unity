@@ -197,7 +197,7 @@ BoxCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 221509466}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: ee0159f1e399947328e7c92bf01baf9d, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -1273,6 +1273,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: GoalPosition
       objectReference: {fileID: 0}
+    - target: {fileID: 5899725030137617287, guid: e1aceb3268cee46d1bef803c13f6adc8, type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 13400000, guid: ee0159f1e399947328e7c92bf01baf9d, type: 2}
     - target: {fileID: 6810126613208182000, guid: e1aceb3268cee46d1bef803c13f6adc8, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
@@ -1556,6 +1560,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3889602761296970780, guid: 8c1ae887cdacb4ee1bdb8244bad47d35, type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 13400000, guid: ee0159f1e399947328e7c92bf01baf9d, type: 2}
     - target: {fileID: 4492020290670193827, guid: 8c1ae887cdacb4ee1bdb8244bad47d35, type: 3}
       propertyPath: m_Name
       value: Tile_Road_Mix (2)

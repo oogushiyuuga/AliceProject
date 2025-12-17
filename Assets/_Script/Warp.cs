@@ -1,4 +1,5 @@
 using UnityEngine;
+using Unity.Cinemachine;
 
 public class Warp : MonoBehaviour
 {
@@ -6,31 +7,39 @@ public class Warp : MonoBehaviour
     public Transform exitPoint; 
 
     [Header("ワープ後の設定")]
-    public bool resetVelocity = true; //速度リセット
-
-    [Header("制限設定")]
+    public bool resetVelocity = true;
     public bool isOneTimeOnly = false;
 
-    // ワープ直後の多重反応防止用
+    [Header("演出設定")]
+    [SerializeField] private GameObject warpEffectPrefab; // ワープ瞬間のエフェクト
+    [SerializeField] private AudioClip warpSound;         // ワープ音
+    [SerializeField] private float shakeForce = 1.0f;     // 揺れの強さ
+
     private float coolTime = 0.5f;
     private float lastWarpTime = -10f;
+    private bool hasUsed = false;
+    
+    private CinemachineImpulseSource impulseSource;
 
-    private bool hasUsed = false; //使い切りか記憶するための
+    void Start()
+    {
+        impulseSource = GetComponent<CinemachineImpulseSource>();
+    }
 
     void OnTriggerEnter(Collider other)
     {
         if (isOneTimeOnly && hasUsed) return;
 
-        // プレイヤーかつ、クールタイムが経過していれば実行
         if (other.CompareTag("Player") && Time.time - lastWarpTime > coolTime)
         {
             if (exitPoint != null)
             {
-                other.transform.position = exitPoint.position;
-                
-                other.transform.rotation = exitPoint.rotation;
+                // 演出実行（ワープ移動の前に行う）
+                PlayEffects(other.transform.position);
 
-                // 物理挙動のリセット
+                // 移動処理
+                other.transform.position = exitPoint.position;
+
                 if (resetVelocity)
                 {
                     if (other.TryGetComponent<Rigidbody>(out Rigidbody rb))
@@ -39,17 +48,34 @@ public class Warp : MonoBehaviour
                     }
                 }
 
-                // クールタイム更新
                 lastWarpTime = Time.time;
+                if (isOneTimeOnly) hasUsed = true;
 
-                if (isOneTimeOnly)
-                {
-                    hasUsed = true;
-                }
-
-                // 音やエフェクトを出すならここ！
                 Debug.Log("ワープしました！");
             }
+        }
+    }
+
+    // 演出をまとめた関数
+    private void PlayEffects(Vector3 position)
+    {
+        // 画面シェイク
+        if (impulseSource != null)
+        {
+            impulseSource.GenerateImpulseWithForce(shakeForce);
+        }
+
+        // エフェクト生成
+        if (warpEffectPrefab != null)
+        {
+            Instantiate(warpEffectPrefab, position, Quaternion.identity);
+        }
+
+        // 音再生
+        if (warpSound != null)
+        {
+            // その場で音を鳴らす（オブジェクトが消えても音が残る便利な関数）
+            AudioSource.PlayClipAtPoint(warpSound, position);
         }
     }
 }

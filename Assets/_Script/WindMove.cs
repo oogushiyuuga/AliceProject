@@ -8,14 +8,14 @@ public class WindMove : MonoBehaviour
     [SerializeField] private float windZ = 0f;
 
     [Header("初期状態")]
-    [SerializeField] private bool isWindActive = true;
+    [SerializeField] private bool isWindActive = true; 
 
-    [Header("見た目")]
-    [SerializeField] private GameObject windEffect; // 風のエフェクトやパーティクル
+    [Header("エフェクト")]
+    [SerializeField] private ParticleSystem windParticle;
+    [SerializeField] private FanRound fanScript;
 
     void Start()
     {
-        // ゲーム開始時にエフェクトの状態を合わせる
         UpdateEffect();
     }
 
@@ -24,34 +24,44 @@ public class WindMove : MonoBehaviour
         if (!isWindActive) return;
 
         Rigidbody otherRigidbody = other.gameObject.GetComponent<Rigidbody>();
-
         if (otherRigidbody != null)
         {
             otherRigidbody.AddForce(windX, windY, windZ, ForceMode.Acceleration);
         }
     }
 
-    // スイッチから呼ぶ関数：切り替え
+    // スイッチから呼ぶ関数
     public void ToggleWind()
     {
         isWindActive = !isWindActive;
         UpdateEffect();
-        Debug.Log("風の状態: " + (isWindActive ? "ON" : "OFF"));
     }
 
-    // スイッチから呼ぶ関数：強制指定
+    // 強制指定用
     public void SetWind(bool active)
     {
         isWindActive = active;
         UpdateEffect();
     }
 
-    // エフェクトの表示/非表示を更新
+    // パーティクルを再生/停止する
     private void UpdateEffect()
     {
-        if (windEffect != null)
+        if (windParticle != null)
         {
-            windEffect.SetActive(isWindActive);
+            if (isWindActive)
+            {
+                if (!windParticle.isPlaying) windParticle.Play();
+            }
+            else
+            {
+                windParticle.Stop();
+            }
+        }
+
+        if (fanScript != null)
+        {
+            fanScript.SetRunning(isWindActive);
         }
     }
 }

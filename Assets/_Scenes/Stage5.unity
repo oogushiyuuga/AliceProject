@@ -1386,12 +1386,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   TrackerSettings:
-    BindingMode: 4
+    BindingMode: 1
     PositionDamping: {x: 0, y: 1, z: 1}
     AngularDampingMode: 0
     RotationDamping: {x: 1, y: 1, z: 1}
     QuaternionDamping: 1
-  FollowOffset: {x: -2, y: 1.5, z: 0}
+  FollowOffset: {x: 0, y: 1.5, z: -2}
 --- !u!114 &1432488163
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1444,7 +1444,7 @@ Transform:
   m_GameObject: {fileID: 1432488160}
   serializedVersion: 2
   m_LocalRotation: {x: 0.11610223, y: 0.6975101, z: -0.11610225, w: 0.69751}
-  m_LocalPosition: {x: -2, y: 2, z: 0}
+  m_LocalPosition: {x: -1.9999999, y: 2, z: 0.00000023841858}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
