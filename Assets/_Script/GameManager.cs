@@ -9,6 +9,7 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] private GameObject placementCamera;
     [SerializeField] private GameObject playerCamera;
+    [SerializeField] private GameObject resultCamera;
 
     [Header("UI設定")]
     [SerializeField] private GameObject resultCanvasPrefab;
@@ -16,8 +17,6 @@ public class GameManager : MonoBehaviour
     [SerializeField] private MonoBehaviour playerMovementScript; 
     [SerializeField] private GameObject inventoryUI;
     [SerializeField] private GameObject startButton;
-    [SerializeField] private GameObject iconStudioPrefab;
-    [SerializeField] private GameObject LargeiconStudioPrefab;
     public enum GameState { Placement, Action, Result, GameOver }
     public GameState CurrentState { get; private set; }
     private GameObject currentResultCanvas;
@@ -35,16 +34,6 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-        if (iconStudioPrefab != null)
-        {
-            Instantiate(iconStudioPrefab);
-        }
-
-        if (LargeiconStudioPrefab != null)
-        {
-            Instantiate(LargeiconStudioPrefab);
-        }
-        
         SwitchToPlacementPhase();
     }
 
@@ -55,6 +44,8 @@ public class GameManager : MonoBehaviour
         if (placementCamera != null) placementCamera.SetActive(true);
 
         if (playerCamera != null) playerCamera.SetActive(false);
+
+        if(resultCamera != null) resultCamera.SetActive(false);
 
         if (playerMovementScript != null) playerMovementScript.enabled = false;
 
@@ -74,6 +65,8 @@ public class GameManager : MonoBehaviour
         if (placementCamera != null) placementCamera.SetActive(false);
         
         if (playerCamera != null) playerCamera.SetActive(true);
+        
+        if(resultCamera != null) resultCamera.SetActive(false);
 
         if (playerMovementScript != null) playerMovementScript.enabled = true;
 
@@ -91,6 +84,20 @@ public class GameManager : MonoBehaviour
 
         Debug.Log("ゲームクリア！");
         CurrentState = GameState.Result;
+
+        if (placementCamera != null) placementCamera.SetActive(false);
+        
+        if (playerCamera != null) playerCamera.SetActive(false);
+        
+        if(resultCamera != null) resultCamera.SetActive(true);
+
+        if (playerMovementScript != null)
+        {
+            if (playerMovementScript is PlayerMove player)
+            {
+                player.OnVictory();
+            }
+        }
 
         if (resultCanvasPrefab != null)
         {

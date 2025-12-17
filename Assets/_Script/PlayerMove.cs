@@ -117,4 +117,23 @@ public class PlayerMove : MonoBehaviour
         yield return new WaitForSeconds(duration);
         dashMultiplier = 1.0f;
     }
+
+    public void OnVictory()
+    {
+        rb.linearVelocity = Vector3.zero;
+        rb.angularVelocity = Vector3.zero;
+        rb.isKinematic = true;
+
+        if (anim != null)
+        {
+            anim.SetTrigger("Win");
+        }
+        
+        /*if (Camera.main != null)
+        {
+            Vector3 camPos = Camera.main.transform.position;
+            camPos.y = transform.position.y;
+            transform.LookAt(camPos);
+        }*/
+    }
 }
