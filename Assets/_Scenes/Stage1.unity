@@ -167,6 +167,14 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: -710209305, guid: 514599c5838354ec1921dfcc6775be02, type: 3}
+    - target: {fileID: 5626328641408767795, guid: 3234cd4e0743f4803a01be4833d54dd5, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 610
+      objectReference: {fileID: 0}
+    - target: {fileID: 5626328641408767795, guid: 3234cd4e0743f4803a01be4833d54dd5, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 450
+      objectReference: {fileID: 0}
     - target: {fileID: 7354428782846565116, guid: 3234cd4e0743f4803a01be4833d54dd5, type: 3}
       propertyPath: objectPrefab
       value: 
@@ -923,6 +931,7 @@ MonoBehaviour:
   playerMovementScript: {fileID: 1819064666}
   inventoryUI: {fileID: 153551695}
   startButton: {fileID: 1253110871}
+  iconStudioPrefab: {fileID: 209966830371817398, guid: 768d75d5b1fee439faaca7a2490a9aa6, type: 3}
 --- !u!4 &1919855950
 Transform:
   m_ObjectHideFlags: 0

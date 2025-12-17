@@ -16,6 +16,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private MonoBehaviour playerMovementScript; 
     [SerializeField] private GameObject inventoryUI;
     [SerializeField] private GameObject startButton;
+    [SerializeField] private GameObject iconStudioPrefab;
     public enum GameState { Placement, Action, Result, GameOver }
     public GameState CurrentState { get; private set; }
     private GameObject currentResultCanvas;
@@ -33,6 +34,11 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
+        if (iconStudioPrefab != null)
+        {
+            Instantiate(iconStudioPrefab);
+        }
+        
         SwitchToPlacementPhase();
     }
 
