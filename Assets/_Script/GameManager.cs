@@ -17,6 +17,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject inventoryUI;
     [SerializeField] private GameObject startButton;
     [SerializeField] private GameObject iconStudioPrefab;
+    [SerializeField] private GameObject LargeiconStudioPrefab;
     public enum GameState { Placement, Action, Result, GameOver }
     public GameState CurrentState { get; private set; }
     private GameObject currentResultCanvas;
@@ -37,6 +38,11 @@ public class GameManager : MonoBehaviour
         if (iconStudioPrefab != null)
         {
             Instantiate(iconStudioPrefab);
+        }
+
+        if (LargeiconStudioPrefab != null)
+        {
+            Instantiate(LargeiconStudioPrefab);
         }
         
         SwitchToPlacementPhase();
