@@ -2,6 +2,10 @@ using UnityEngine;
 
 public class DashPad : MonoBehaviour
 {
+     [Header("エフェクト設定")]
+    [SerializeField] private GameObject effectPrefab;
+    [SerializeField] private float effectDuration = 2.0f;
+
     [Header("ダッシュ設定")]
     [SerializeField] private float dashMultiplier = 3.0f;
     [SerializeField] private float duration = 0.5f;
@@ -12,5 +16,16 @@ public class DashPad : MonoBehaviour
         {
             player.ApplyDash(dashMultiplier, duration);
         }
+
+        if (effectPrefab != null)
+            {
+                //AudioManager.Instance.PlaySE("Dash");
+                Vector3 spawnPos = player.transform.position + Vector3.up * 1.0f;
+                GameObject effectObj = Instantiate(effectPrefab, spawnPos, Quaternion.identity);
+
+                effectObj.transform.SetParent(player.transform);
+
+                Destroy(effectObj, effectDuration);
+            }
     }
 }

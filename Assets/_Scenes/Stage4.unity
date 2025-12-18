@@ -26,7 +26,7 @@ RenderSettings:
   m_AmbientIntensity: 1
   m_AmbientMode: 0
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
-  m_SkyboxMaterial: {fileID: 10304, guid: 0000000000000000f000000000000000, type: 0}
+  m_SkyboxMaterial: {fileID: 2100000, guid: 1cf6f4c6e6e0518419839d3f5448dd99, type: 2}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
   m_FlareFadeSpeed: 3
@@ -6410,6 +6410,7 @@ GameObject:
   - component: {fileID: 988722161}
   - component: {fileID: 988722163}
   - component: {fileID: 988722162}
+  - component: {fileID: 988722164}
   m_Layer: 5
   m_Name: Image (3)
   m_TagString: Untagged
@@ -6475,6 +6476,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 988722160}
   m_CullTransparentMesh: 1
+--- !u!114 &988722164
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 988722160}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6c00095a3aa4246caae5032f90c908d9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  myDescription: "\u9032\u3080\u89D2\u5EA6\u3092\u5909\u3048\u3089\u308C\u308B\u30A2\u30A4\u30C6\u30E0\u3002\n\u308F\u304B\u308A\u306B\u304F\u3044...?"
 --- !u!1 &989939938
 GameObject:
   m_ObjectHideFlags: 0
@@ -6486,6 +6500,7 @@ GameObject:
   - component: {fileID: 989939939}
   - component: {fileID: 989939941}
   - component: {fileID: 989939940}
+  - component: {fileID: 989939942}
   m_Layer: 5
   m_Name: Image (2)
   m_TagString: Untagged
@@ -6551,6 +6566,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 989939938}
   m_CullTransparentMesh: 1
+--- !u!114 &989939942
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 989939938}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6c00095a3aa4246caae5032f90c908d9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  myDescription: "\u9032\u3080\u89D2\u5EA6\u3092\u5909\u3048\u3089\u308C\u308B\u30A2\u30A4\u30C6\u30E0\u3002\n\u308F\u304B\u308A\u306B\u304F\u3044...?"
 --- !u!1 &991498285
 GameObject:
   m_ObjectHideFlags: 0
@@ -7117,6 +7145,7 @@ GameObject:
   - component: {fileID: 1464052448}
   - component: {fileID: 1464052450}
   - component: {fileID: 1464052449}
+  - component: {fileID: 1464052451}
   m_Layer: 5
   m_Name: Image (1)
   m_TagString: Untagged
@@ -7182,6 +7211,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1464052447}
   m_CullTransparentMesh: 1
+--- !u!114 &1464052451
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1464052447}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6c00095a3aa4246caae5032f90c908d9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  myDescription: "\u9032\u3080\u89D2\u5EA6\u3092\u5909\u3048\u3089\u308C\u308B\u30A2\u30A4\u30C6\u30E0\u3002\n\u308F\u304B\u308A\u306B\u304F\u3044...?"
 --- !u!1001 &1522748740
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7262,6 +7304,7 @@ GameObject:
   - component: {fileID: 1544544138}
   - component: {fileID: 1544544140}
   - component: {fileID: 1544544139}
+  - component: {fileID: 1544544141}
   m_Layer: 5
   m_Name: Image
   m_TagString: Untagged
@@ -7327,6 +7370,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1544544137}
   m_CullTransparentMesh: 1
+--- !u!114 &1544544141
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1544544137}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6c00095a3aa4246caae5032f90c908d9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  myDescription: "\u9032\u3080\u89D2\u5EA6\u3092\u5909\u3048\u3089\u308C\u308B\u30A2\u30A4\u30C6\u30E0\u3002\n\u308F\u304B\u308A\u306B\u304F\u3044...?"
 --- !u!114 &1561533366 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1291440602102373, guid: a53e05ab85dd249b99e8b46d18dcbb02, type: 3}

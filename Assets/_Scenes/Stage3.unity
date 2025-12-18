@@ -26,7 +26,7 @@ RenderSettings:
   m_AmbientIntensity: 1
   m_AmbientMode: 0
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
-  m_SkyboxMaterial: {fileID: 10304, guid: 0000000000000000f000000000000000, type: 0}
+  m_SkyboxMaterial: {fileID: 2100000, guid: a630584330598434396125ffbab51373, type: 2}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
   m_FlareFadeSpeed: 3
@@ -623,6 +623,10 @@ PrefabInstance:
       propertyPath: objectPrefab
       value: 
       objectReference: {fileID: 6421504822216798175, guid: b7e51484d72e84028a1a1db27ef5407b, type: 3}
+    - target: {fileID: 7133904972062445752, guid: 3234cd4e0743f4803a01be4833d54dd5, type: 3}
+      propertyPath: myDescription
+      value: "\u3067\u304B\u304F\u306A\u308B\u3053\u3068\u304C\u3067\u304D\u308B\u30E9\u30A4\u30C8\u3002"
+      objectReference: {fileID: 0}
     - target: {fileID: 7354428782846565116, guid: 3234cd4e0743f4803a01be4833d54dd5, type: 3}
       propertyPath: objectPrefab
       value: 
@@ -1053,6 +1057,7 @@ GameObject:
   - component: {fileID: 1346712597}
   - component: {fileID: 1346712596}
   - component: {fileID: 1346712595}
+  - component: {fileID: 1346712598}
   m_Layer: 5
   m_Name: RawImage (2)
   m_TagString: Untagged
@@ -1132,6 +1137,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1346712593}
   m_CullTransparentMesh: 1
+--- !u!114 &1346712598
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1346712593}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6c00095a3aa4246caae5032f90c908d9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  myDescription: "\u30B9\u30D4\u30FC\u30C9\u304C1\u79D2\u9593\u4E0A\u304C\u308B\u3002"
 --- !u!1 &1488792693
 GameObject:
   m_ObjectHideFlags: 0
@@ -1994,6 +2012,7 @@ GameObject:
   - component: {fileID: 2068929948}
   - component: {fileID: 2068929947}
   - component: {fileID: 2068929946}
+  - component: {fileID: 2068929949}
   m_Layer: 5
   m_Name: RawImage (3)
   m_TagString: Untagged
@@ -2073,6 +2092,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2068929944}
   m_CullTransparentMesh: 1
+--- !u!114 &2068929949
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2068929944}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6c00095a3aa4246caae5032f90c908d9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  myDescription: "\u3073\u3088\u3088\uFF5E\u3093\u3002\u98DB\u3073\u4E0A\u304C\u308C\u308B\u30A2\u30A4\u30C6\u30E0\u3002\n\u98DB\u8DDD\u96E2\u304C\u8DB3\u308A\u306A\u3044\u5834\u5408\u306F\u52E2\u3044\u3092\u3064\u3051\u3088\u3046\u3002"
 --- !u!1 &2081611722
 GameObject:
   m_ObjectHideFlags: 0

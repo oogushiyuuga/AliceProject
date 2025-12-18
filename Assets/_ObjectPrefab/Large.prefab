@@ -126,6 +126,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aba5ce15937f547e488bad437137b54f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  effectPrefab: {fileID: 7155335147208632822, guid: 97c43495f80a3244fad1301dfafbe252, type: 3}
+  duration: 2
 --- !u!114 &6778430224513481404
 MonoBehaviour:
   m_ObjectHideFlags: 0

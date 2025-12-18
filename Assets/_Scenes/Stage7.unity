@@ -26,7 +26,7 @@ RenderSettings:
   m_AmbientIntensity: 1
   m_AmbientMode: 0
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
-  m_SkyboxMaterial: {fileID: 10304, guid: 0000000000000000f000000000000000, type: 0}
+  m_SkyboxMaterial: {fileID: 2100000, guid: 1cea09e2f3b5a4d9aa9c11318f8b26b1, type: 2}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
   m_FlareFadeSpeed: 3
@@ -578,6 +578,10 @@ PrefabInstance:
       propertyPath: objectPrefab
       value: 
       objectReference: {fileID: 6421504822216798175, guid: b7e51484d72e84028a1a1db27ef5407b, type: 3}
+    - target: {fileID: 7133904972062445752, guid: 3234cd4e0743f4803a01be4833d54dd5, type: 3}
+      propertyPath: myDescription
+      value: "\u30B9\u30D4\u30FC\u30C9\u304C1\u79D2\u9593\u4E0A\u304C\u308B\u3002"
+      objectReference: {fileID: 0}
     - target: {fileID: 7388953348729255444, guid: 3234cd4e0743f4803a01be4833d54dd5, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -960,6 +964,7 @@ GameObject:
   - component: {fileID: 1075496043}
   - component: {fileID: 1075496042}
   - component: {fileID: 1075496041}
+  - component: {fileID: 1075496044}
   m_Layer: 5
   m_Name: RawImage (2)
   m_TagString: Untagged
@@ -1039,6 +1044,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1075496039}
   m_CullTransparentMesh: 1
+--- !u!114 &1075496044
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1075496039}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6c00095a3aa4246caae5032f90c908d9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  myDescription: "\u3073\u3088\u3088\uFF5E\u3093\u3002\u98DB\u3073\u4E0A\u304C\u308C\u308B\u30A2\u30A4\u30C6\u30E0\u3002"
 --- !u!1 &1137865086
 GameObject:
   m_ObjectHideFlags: 0

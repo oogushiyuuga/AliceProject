@@ -26,7 +26,7 @@ RenderSettings:
   m_AmbientIntensity: 1
   m_AmbientMode: 0
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
-  m_SkyboxMaterial: {fileID: 10304, guid: 0000000000000000f000000000000000, type: 0}
+  m_SkyboxMaterial: {fileID: 2100000, guid: a630584330598434396125ffbab51373, type: 2}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
   m_FlareFadeSpeed: 3
@@ -214,6 +214,10 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1919855949}
+    - target: {fileID: 7133904972062445752, guid: 3234cd4e0743f4803a01be4833d54dd5, type: 3}
+      propertyPath: myDescription
+      value: "\u3067\u304B\u304F\u306A\u308B\u3053\u3068\u304C\u3067\u304D\u308B\u30E9\u30A4\u30C8\u3002"
+      objectReference: {fileID: 0}
     - target: {fileID: 7388953348729255444, guid: 3234cd4e0743f4803a01be4833d54dd5, type: 3}
       propertyPath: m_Pivot.x
       value: 0

@@ -85,6 +85,8 @@ public class GameManager : MonoBehaviour
         Debug.Log("ゲームクリア！");
         CurrentState = GameState.Result;
 
+        //AudioManager.Instance.PlaySE("Gameclear_cute");
+
         if (placementCamera != null) placementCamera.SetActive(false);
         
         if (playerCamera != null) playerCamera.SetActive(false);

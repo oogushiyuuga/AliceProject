@@ -27,11 +27,7 @@ public class PlayerMove : MonoBehaviour
     {
         if (anim != null)
         {
-            // GameManagerの状態がActionフェーズなら走る
             bool isRunning = GameManager.Instance.CurrentState == GameManager.GameState.Action;
-            
-            // または、実際に動いているかで判定してもOK
-            // bool isRunning = rb.linearVelocity.sqrMagnitude > 0.1f;
 
             anim.SetBool("IsRun", isRunning);
         }
@@ -128,12 +124,5 @@ public class PlayerMove : MonoBehaviour
         {
             anim.SetTrigger("Win");
         }
-        
-        /*if (Camera.main != null)
-        {
-            Vector3 camPos = Camera.main.transform.position;
-            camPos.y = transform.position.y;
-            transform.LookAt(camPos);
-        }*/
     }
 }
