@@ -19,7 +19,7 @@ public class DashPad : MonoBehaviour
 
         if (effectPrefab != null)
             {
-                //AudioManager.Instance.PlaySE("Dash");
+                //AudioManager.Instance.PlaySE("SpeedUp");
                 Vector3 spawnPos = player.transform.position + Vector3.up * 1.0f;
                 GameObject effectObj = Instantiate(effectPrefab, spawnPos, Quaternion.identity);
 

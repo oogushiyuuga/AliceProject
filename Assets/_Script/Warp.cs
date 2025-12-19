@@ -12,7 +12,6 @@ public class Warp : MonoBehaviour
 
     [Header("演出設定")]
     [SerializeField] private GameObject warpEffectPrefab; // ワープ瞬間のエフェクト
-    [SerializeField] private AudioClip warpSound;         // ワープ音
     [SerializeField] private float shakeForce = 1.0f;     // 揺れの強さ
 
     private float coolTime = 0.5f;
@@ -59,6 +58,7 @@ public class Warp : MonoBehaviour
     // 演出をまとめた関数
     private void PlayEffects(Vector3 position)
     {
+        AudioManager.Instance.PlaySE("Warp");
         // 画面シェイク
         if (impulseSource != null)
         {
@@ -69,13 +69,6 @@ public class Warp : MonoBehaviour
         if (warpEffectPrefab != null)
         {
             Instantiate(warpEffectPrefab, position, Quaternion.identity);
-        }
-
-        // 音再生
-        if (warpSound != null)
-        {
-            // その場で音を鳴らす（オブジェクトが消えても音が残る便利な関数）
-            AudioSource.PlayClipAtPoint(warpSound, position);
         }
     }
 }

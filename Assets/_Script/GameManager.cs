@@ -35,6 +35,7 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         SwitchToPlacementPhase();
+        AudioManager.Instance.PlayBGM("BGM");
     }
 
     // 設置フェーズへ切り替え

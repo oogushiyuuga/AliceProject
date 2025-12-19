@@ -30,6 +30,17 @@ public class PlayerMove : MonoBehaviour
             bool isRunning = GameManager.Instance.CurrentState == GameManager.GameState.Action;
 
             anim.SetBool("IsRun", isRunning);
+
+            if (isRunning)
+            {
+                // 「エリア倍率 × ダッシュ倍率」をアニメ速度に反映
+                anim.speed = zoneMultiplier * dashMultiplier;
+            }
+            else
+            {
+                // ゴールした時や待機中は、ポーズなどを正常な速さで再生するために1に戻す
+                anim.speed = 1.0f;
+            }
         }
     }
 

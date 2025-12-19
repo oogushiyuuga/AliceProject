@@ -625,7 +625,7 @@ PrefabInstance:
       objectReference: {fileID: 6421504822216798175, guid: b7e51484d72e84028a1a1db27ef5407b, type: 3}
     - target: {fileID: 7133904972062445752, guid: 3234cd4e0743f4803a01be4833d54dd5, type: 3}
       propertyPath: myDescription
-      value: "\u3067\u304B\u304F\u306A\u308B\u3053\u3068\u304C\u3067\u304D\u308B\u30E9\u30A4\u30C8\u3002"
+      value: "\u5927\u304D\u304F\u306A\u308B\u3053\u3068\u304C\u3067\u304D\u308B\u30E9\u30A4\u30C8\u3002"
       objectReference: {fileID: 0}
     - target: {fileID: 7354428782846565116, guid: 3234cd4e0743f4803a01be4833d54dd5, type: 3}
       propertyPath: objectPrefab

@@ -24,6 +24,7 @@ public class WindSwitch : MonoBehaviour
         {
             if (targetWind != null)
             {
+                AudioManager.Instance.PlaySE("Switch");
                 // 風を切り替える
                 targetWind.ToggleWind();
                 
