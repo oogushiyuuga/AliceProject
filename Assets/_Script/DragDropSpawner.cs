@@ -70,7 +70,7 @@ public class DragDropSpawner : MonoBehaviour, IBeginDragHandler, IDragHandler, I
 
         transform.position = eventData.position;
 
-        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        Ray ray = Camera.main.ScreenPointToRay(eventData.position);
         RaycastHit hit;
 
         // Groundのみを対象にする設定済み前提

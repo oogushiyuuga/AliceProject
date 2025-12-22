@@ -1,42 +1,53 @@
 using UnityEngine;
-using UnityEngine.EventSystems; // UI判定に必要
+using UnityEngine.EventSystems;
 
 public class PlacedObject : MonoBehaviour
 {
-    private DragDropSpawner mySpawner; // 産みの親
+    private DragDropSpawner mySpawner;
     private Vector3 originalPos;
     private bool isDragging = false;
     
-    // スマホでの誤タップ防止用の閾値
-    private float dragThreshold = 0.5f; 
+    // ダブルタップ判定用
+    private float lastTapTime = 0f;
+    private const float doubleTapInterval = 0.3f;
 
+    // 親（Spawner）をセットする関数
     public void Setup(DragDropSpawner spawner)
     {
         mySpawner = spawner;
     }
 
-    // ドラッグ開始
+    void Start()
+    {
+        originalPos = transform.position;
+    }
+
+    // ドラッグ中（指でなぞっている間）
     void OnMouseDrag()
     {
-        // 設置フェーズ以外なら触れない
+        // アクションフェーズ中は触れないようにガード
         if (GameManager.Instance.CurrentState != GameManager.GameState.Placement) return;
+        
+        // Spawnerの設定がないとグリッド計算できないので中断
         if (mySpawner == null) return;
 
         isDragging = true;
 
-        // ドラッグ中は、自分自身の当たり判定を消して、レイキャストが突き抜けるようにする
+        // 自分の当たり判定を一時的に切る（レイキャストが自分に当たらないように）
         SetColliderEnabled(false);
 
         // --- 移動処理 ---
+
+        // スマホのタッチ位置、またはマウス位置へレイを飛ばす
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         RaycastHit hit;
 
-        // Groundにレイが当たっているか？
+        // Groundレイヤーに当たったら、その位置へ移動
         if (Physics.Raycast(ray, out hit, Mathf.Infinity, mySpawner.groundLayer))
         {
-            // グリッドに合わせて移動
-            Vector3 targetPos = hit.point;
+            // グリッドスナップ計算（親の設定値を使用）
             float gSize = mySpawner.gridSize;
+            Vector3 targetPos = hit.point;
 
             float x = Mathf.Round(targetPos.x / gSize) * gSize;
             float z = Mathf.Round(targetPos.z / gSize) * gSize;
@@ -46,48 +57,73 @@ public class PlacedObject : MonoBehaviour
         }
     }
 
-    // 指を離した時（ドロップまたは削除判定）
+    // 指を離した時（ドロップ、タップ判定）
     void OnMouseUp()
     {
-        if (!isDragging) return;
-        isDragging = false;
+        if (GameManager.Instance.CurrentState != GameManager.GameState.Placement) return;
         
         // 当たり判定を復活させる
         SetColliderEnabled(true);
 
         if (mySpawner == null) return;
 
-        // 指を離した場所がインベントリの上だった場合、削除
-        if (IsPointerOverUI())
+        // ドラッグしていた場合
+        if (isDragging)
         {
-            Debug.Log("UIの上で離したので削除します");
-            mySpawner.ReturnItem(); // インベントリに戻す
-            Destroy(gameObject);
-            return;
-        }
+            isDragging = false;
 
-        // --- UIの上じゃなければ、配置判定 ---
-        if (!IsPositionValid())
-        {
-            // 置けない場所なら元の位置に戻す
-            transform.position = originalPos;
-            Debug.Log("そこには置けません（障害物あり）");
+            // インベントリの上で離したか？
+            if (IsPointerOverUI())
+            {
+                Debug.Log("UIへ戻したので削除");
+                ReturnAndDestroy();
+                return;
+            }
+
+            // 置ける場所かどうか
+            if (!IsPositionValid())
+            {
+                // 置けないなら、元の位置に戻す
+                transform.position = originalPos;
+                Debug.Log("そこには置けません");
+            }
+            else
+            {
+                // 置けるなら、ここを新しい「定位置」として記憶
+                originalPos = transform.position;
+            }
         }
         else
         {
-            // 配置確定（新しい場所を記憶）
-            originalPos = transform.position;
+            // ドラッグせずにその場で指を離した（＝タップ）
             
-            // エフェクト（音やパーティクル）
+            // ダブルタップかどうか
+            float timeSinceLastTap = Time.time - lastTapTime;
+            
+            if (timeSinceLastTap < doubleTapInterval)
+            {
+                Debug.Log("ダブルタップで削除");
+                ReturnAndDestroy();
+                return;
+            }
+            
+            // タップ時間を更新
+            lastTapTime = Time.time;
         }
     }
 
-    void Start()
+    // アイテムをインベントリに返して消滅する処理
+    private void ReturnAndDestroy()
     {
-        originalPos = transform.position;
+        if (mySpawner != null)
+        {
+            mySpawner.ReturnItem();
+        }
+
+        Destroy(gameObject);
     }
 
-    // コライダのオンオフ切り替え（子要素も含めて）
+    // コライダのオンオフ切り替え（子要素も含めて一括）
     private void SetColliderEnabled(bool isEnabled)
     {
         Collider[] cols = GetComponentsInChildren<Collider>();
@@ -98,9 +134,9 @@ public class PlacedObject : MonoBehaviour
     private bool IsPositionValid()
     {
         float gSize = mySpawner.gridSize;
-        // 少し小さめの判定ボックスを作る（隣接マスへの誤反応防止）
+        // 少し小さめの判定ボックス（隣接マスへの誤反応防止）
         Vector3 halfExtents = Vector3.one * (gSize * 0.45f);
-        Vector3 center = transform.position + Vector3.up * 0.5f; // 中心を少し上げる
+        Vector3 center = transform.position + Vector3.up * 0.5f; 
         
         // 障害物レイヤーと重なっているかチェック
         Collider[] hitColliders = Physics.OverlapBox(center, halfExtents, Quaternion.identity, mySpawner.obstacleLayer);
@@ -119,17 +155,17 @@ public class PlacedObject : MonoBehaviour
     // スマホ・PC両対応の「UIに触れているか」判定メソッド
     private bool IsPointerOverUI()
     {
-        // PC（マウス）の場合
+        // マウスの場合
         if (EventSystem.current.IsPointerOverGameObject())
         {
             return true;
         }
 
-        // スマホ（タッチ）の場合
+        // タッチの場合
         if (Input.touchCount > 0)
         {
             Touch touch = Input.GetTouch(0);
-            // 指IDを指定して判定する必要がある
+
             if (EventSystem.current.IsPointerOverGameObject(touch.fingerId))
             {
                 return true;

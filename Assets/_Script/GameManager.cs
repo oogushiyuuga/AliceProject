@@ -54,15 +54,17 @@ public class GameManager : MonoBehaviour
 
         if (startButton != null) startButton.SetActive(true);
 
-        //マウスカーソルを表示・ロック解除
+        #if UNITY_STANDALONE || UNITY_EDITOR
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
+        #endif
     }
 
     // アクションフェーズへ切り替え（ボタンから呼ぶ）
     public void OnStartActionButtonClicked()
     {
         CurrentState = GameState.Action;
+
         if (placementCamera != null) placementCamera.SetActive(false);
         
         if (playerCamera != null) playerCamera.SetActive(true);
@@ -75,8 +77,11 @@ public class GameManager : MonoBehaviour
 
         if (startButton != null) startButton.SetActive(false);
 
+        // ロックすると、スマホでタッチ座標が取れなくなるケースがあるため避ける
+        #if UNITY_STANDALONE || UNITY_EDITOR
         Cursor.visible = false;
-        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.lockState = CursorLockMode.None;
+        #endif
     }
 
     public void GameClear()
@@ -86,7 +91,7 @@ public class GameManager : MonoBehaviour
         Debug.Log("ゲームクリア！");
         CurrentState = GameState.Result;
 
-        //AudioManager.Instance.PlaySE("Gameclear_cute");
+        AudioManager.Instance.PlaySE("Gameclear_cute");
 
         if (placementCamera != null) placementCamera.SetActive(false);
         
@@ -111,8 +116,10 @@ public class GameManager : MonoBehaviour
             currentResultCanvas = Instantiate(resultCanvasPrefab);
         }
 
+        #if UNITY_STANDALONE || UNITY_EDITOR
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
+        #endif
 
         if (inventoryUI != null) inventoryUI.SetActive(false);
     }
@@ -130,8 +137,8 @@ public class GameManager : MonoBehaviour
         }
         else
         {
-            Debug.Log("全ステージクリア！タイトルに戻ります");
-            SceneManager.LoadScene("StartScene");
+            Debug.Log("全ステージクリア！");
+            SceneManager.LoadScene("ClearScene");
         }
     }
 
