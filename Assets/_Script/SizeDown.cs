@@ -14,7 +14,7 @@ public class SizeDown : MonoBehaviour
 
             if (effectPrefab != null)
             {
-                //AudioManager.Instance.PlaySE("SizeChange");
+                AudioManager.Instance.PlaySE("SizeChange");
                 Vector3 spawnPos = player.transform.position + Vector3.up * 1.0f;
                 GameObject effectObj = Instantiate(effectPrefab, spawnPos, Quaternion.identity);
 
