@@ -92,7 +92,7 @@ public class GameManager : MonoBehaviour
         CurrentState = GameState.Result;
         
         AudioManager.Instance.StopBGM();
-        AudioManager.Instance.PlaySE("Gameclear_cute");
+        AudioManager.Instance.PlaySE("GameClear");
 
         if (placementCamera != null) placementCamera.SetActive(false);
         
@@ -171,6 +171,7 @@ public class GameManager : MonoBehaviour
     // ステージ選択へ戻る
     public void GoToStageSelect()
     {
+        AudioManager.Instance.StopBGM();
         SceneManager.LoadScene("StageSelectScene");
     }
 }

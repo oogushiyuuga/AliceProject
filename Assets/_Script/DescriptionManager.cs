@@ -1,13 +1,14 @@
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 public class DescriptionManager : MonoBehaviour
 {
     public static DescriptionManager Instance;
 
     [Header("UIパーツ")]
     [SerializeField] private GameObject panelObj;
-    [SerializeField] private Text descriptionText;
-    //[SerializeField] private TextMeshProUGUI descriptionText;
+    //[SerializeField] private Text descriptionText;
+    [SerializeField] private TextMeshProUGUI descriptionText;
 
     void Awake()
     {

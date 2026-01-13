@@ -30,7 +30,7 @@ public class GameController : MonoBehaviour
         var options = new ConfirmDialogOptions
         {
             PrefabPath = "Canvas_Credit", 
-            OnOK = () => { Result.text = "合格通知を送信しました。"; }
+            OnOK = () => { Result.text = "クレジットを開きました。"; }
         };
         ConfirmDialogController.Show(options);
     }
@@ -41,6 +41,16 @@ public class GameController : MonoBehaviour
         {
             PrefabPath = "Canvas_Pause", 
             OnOK = () => { Result.text = "ポーズを開きました"; }
+        };
+        ConfirmDialogController.Show(options);
+    }
+
+    public void Open_Settings()
+    {
+        var options = new ConfirmDialogOptions
+        {
+            PrefabPath = "Canvas_Settings", 
+            OnOK = () => { Result.text = "設定を開きました。"; }
         };
         ConfirmDialogController.Show(options);
     }

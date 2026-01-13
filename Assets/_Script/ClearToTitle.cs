@@ -17,6 +17,7 @@ public class ClearToTitle : MonoBehaviour
 
     public void OnTitleScene()
     {
+        AudioManager.Instance.StopBGM();
         SceneManager.LoadScene("StartScene");
     }
 }

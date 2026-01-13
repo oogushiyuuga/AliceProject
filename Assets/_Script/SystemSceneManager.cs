@@ -6,7 +6,6 @@ public class SystemSceneManager : MonoBehaviour
     // スタートボタンを押した時
     public void OnStartClicked()
     {
-        // 前回作った「ステージ選択画面」のシーン名を正確に入れる
         SceneManager.LoadScene("StageSelectScene");
     }
 
