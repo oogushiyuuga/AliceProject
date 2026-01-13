@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using System.Numerics;
 
 public class PlayerMoveTest : MonoBehaviour
 {
@@ -9,7 +10,7 @@ public class PlayerMoveTest : MonoBehaviour
 
     private Rigidbody rb;
     private float stuckTimer = 0f;
-    private Vector3 lastPosition;
+    private UnityEngine.Vector3 lastPosition;
     
     // 速度倍率
     private float zoneMultiplier = 1.0f;
@@ -21,14 +22,15 @@ public class PlayerMoveTest : MonoBehaviour
     public Transform viewCamera; 
 
     [Tooltip("カメラの位置オフセット（プレイヤーからどれくらい離すか）")]
-    public Vector3 camPositionOffset = new Vector3(0, 2.5f, -4.0f);
+    public UnityEngine.Vector3 camPositionOffset = new UnityEngine.Vector3(0, 2.5f, -4.0f);
 
     [Tooltip("カメラの角度オフセット（少し下に向けるなど）")]
-    public Vector3 camRotationOffset = new Vector3(15.0f, 0, 0);
+    public UnityEngine.Vector3 camRotationOffset = new UnityEngine.Vector3(15.0f, 0, 0);
 
     [Tooltip("回転の遅れ（秒）。0で即追従、数値が大きいほどゆっくりついてくる")]
     [Range(0f, 2f)]
     public float camRotationLag = 0.2f;
+    public float camTranslateLag = 0.2f;
     // -------------------------------
 
     void Start()
@@ -75,12 +77,12 @@ public class PlayerMoveTest : MonoBehaviour
         
         if (GameManager.Instance.CurrentState == GameManager.GameState.Action)
         {
-            Vector3 moveVelocity = transform.forward * finalSpeed;
-            rb.linearVelocity = new Vector3(moveVelocity.x, yVelocity, moveVelocity.z);
+            UnityEngine.Vector3 moveVelocity = transform.forward * finalSpeed;
+            rb.linearVelocity = new UnityEngine.Vector3(moveVelocity.x, yVelocity, moveVelocity.z);
         }
         else
         {
-            rb.linearVelocity = new Vector3(0, yVelocity, 0);
+            rb.linearVelocity = new UnityEngine.Vector3(0, yVelocity, 0);
         }
 
         // 落下・詰まり判定
@@ -92,7 +94,7 @@ public class PlayerMoveTest : MonoBehaviour
 
         if (GameManager.Instance.CurrentState == GameManager.GameState.Action)
         {
-            float distanceMoved = Vector3.Distance(transform.position, lastPosition);
+            float distanceMoved = UnityEngine.Vector3.Distance(transform.position, lastPosition);
             if (distanceMoved < 0.05f) 
             {
                 stuckTimer += Time.fixedDeltaTime;
@@ -127,16 +129,24 @@ public class PlayerMoveTest : MonoBehaviour
         //    提供されたコードの挙動（Target.position + offset）に合わせるなら以下になります。
         
         // プレイヤーの向きに合わせてカメラ位置を変えたい場合（背後をついてくる）:
-        Vector3 targetPos = transform.position + (transform.rotation * camPositionOffset);
+        UnityEngine.Vector3 targetPos = transform.position + (transform.rotation * camPositionOffset);
         
         // 単純に座標だけ足す場合（向きが変わってもカメラ位置は固定）:
         // Vector3 targetPos = transform.position + camPositionOffset;
 
-        viewCamera.position = targetPos;
+        if(instant || camTranslateLag <= 0f){
+            viewCamera.position = targetPos;
+        }
+        else
+        {
+            // 時間経過に応じた減衰（Lag）計算
+            float t2 = 1f - Mathf.Exp(-Time.deltaTime / camRotationLag);
+            viewCamera.position = UnityEngine.Vector3.Lerp(viewCamera.position, targetPos,t2);
+        }
 
 
         // 2. 回転の追従（遅延あり）
-        Quaternion targetRot = transform.rotation * Quaternion.Euler(camRotationOffset);
+        UnityEngine.Quaternion targetRot = transform.rotation * UnityEngine.Quaternion.Euler(camRotationOffset);
 
         if (instant || camRotationLag <= 0f)
         {
@@ -146,7 +156,7 @@ public class PlayerMoveTest : MonoBehaviour
         {
             // 時間経過に応じた減衰（Lag）計算
             float t = 1f - Mathf.Exp(-Time.deltaTime / camRotationLag);
-            viewCamera.rotation = Quaternion.Slerp(viewCamera.rotation, targetRot, t);
+            viewCamera.rotation = UnityEngine.Quaternion.Slerp(viewCamera.rotation, targetRot, t);
         }
     }
 
@@ -164,11 +174,11 @@ public class PlayerMoveTest : MonoBehaviour
 
     public void DoJump(float jumpForce)
     {
-        Vector3 velocity = rb.linearVelocity;
+        UnityEngine.Vector3 velocity = rb.linearVelocity;
         velocity.y = 0;
         rb.linearVelocity = velocity;
         
-        rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+        rb.AddForce(UnityEngine.Vector3.up * jumpForce, ForceMode.Impulse);
 
         if (anim != null)
         {
@@ -185,8 +195,8 @@ public class PlayerMoveTest : MonoBehaviour
 
     public void OnVictory()
     {
-        rb.linearVelocity = Vector3.zero;
-        rb.angularVelocity = Vector3.zero;
+        rb.linearVelocity = UnityEngine.Vector3.zero;
+        rb.angularVelocity = UnityEngine.Vector3.zero;
         rb.isKinematic = true;
 
         if (anim != null)
