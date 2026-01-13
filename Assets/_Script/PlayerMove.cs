@@ -75,7 +75,7 @@ public class PlayerMove : MonoBehaviour
         if (GameManager.Instance.CurrentState == GameManager.GameState.Action)
         {
             float distanceMoved = Vector3.Distance(transform.position, lastPosition);
-            if (distanceMoved < 0.01f) 
+            if (distanceMoved < 0.05f) 
             {
                 stuckTimer += Time.fixedDeltaTime;
                 if (stuckTimer > 2.0f)

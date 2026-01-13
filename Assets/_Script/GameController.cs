@@ -47,10 +47,19 @@ public class GameController : MonoBehaviour
 
     public void Open_Settings()
     {
+        if (pauseCanvas != null && pauseCanvas.activeSelf)
+        {
+            pauseCanvas.SetActive(false);
+        }
+
         var options = new ConfirmDialogOptions
         {
-            PrefabPath = "Canvas_Settings", 
-            OnOK = () => { Result.text = "設定を開きました。"; }
+            PrefabPath = "Canvas_Settings", // どのプレハブを使うか指定
+            OnOK = () => 
+            { 
+                Result.text = "";
+                if (pauseCanvas != null) pauseCanvas.SetActive(true);
+            }
         };
         ConfirmDialogController.Show(options);
     }
