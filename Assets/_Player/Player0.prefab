@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6995549325461484407}
-  - component: {fileID: 7395526481800108267}
+  - component: {fileID: 40354702815634139}
   - component: {fileID: 2456053884883020160}
   - component: {fileID: 3098354582748017511}
   m_Layer: 0
@@ -35,7 +35,7 @@ Transform:
   - {fileID: 3748107077823684970}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
---- !u!114 &7395526481800108267
+--- !u!114 &40354702815634139
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -44,11 +44,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 6283401892467778083}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2f1451b71dcce432c94b39ca493e225b, type: 3}
+  m_Script: {fileID: 11500000, guid: 26903d78898774d3e9df817824fa84ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   baseSpeed: 5
   anim: {fileID: 3748107077815897986}
+  viewCamera: {fileID: 0}
+  camPositionOffset: {x: 0, y: 1.5, z: -3}
+  camRotationOffset: {x: 20, y: 0, z: 0}
+  camPositionLag: 0.2
+  camRotationLag: 0.2
 --- !u!54 &2456053884883020160
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -167,7 +172,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 11400002, guid: 13a16f60da4245c45a865b2136ba272c, type: 3}
       propertyPath: m_bodyStateNames.Array.size
-      value: 4
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 11400002, guid: 13a16f60da4245c45a865b2136ba272c, type: 3}
       propertyPath: 'm_bodyStateNames.Array.data[0]'
@@ -184,6 +189,10 @@ PrefabInstance:
     - target: {fileID: 11400002, guid: 13a16f60da4245c45a865b2136ba272c, type: 3}
       propertyPath: 'm_bodyStateNames.Array.data[3]'
       value: New State
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400002, guid: 13a16f60da4245c45a865b2136ba272c, type: 3}
+      propertyPath: 'm_bodyStateNames.Array.data[4]'
+      value: Salute
       objectReference: {fileID: 0}
     - target: {fileID: 11400004, guid: 13a16f60da4245c45a865b2136ba272c, type: 3}
       propertyPath: m_Enabled

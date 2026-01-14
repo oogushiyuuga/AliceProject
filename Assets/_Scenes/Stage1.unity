@@ -938,17 +938,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 2.0000012, y: 2, z: 2.0000012}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &1819064666 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7395526481800108267, guid: 296af480ffd3c45d88c61c902153af1f, type: 3}
-  m_PrefabInstance: {fileID: 297806589735611919}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2f1451b71dcce432c94b39ca493e225b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &1819064667 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6995549325461484407, guid: 296af480ffd3c45d88c61c902153af1f, type: 3}
@@ -988,7 +977,7 @@ MonoBehaviour:
   resultCamera: {fileID: 108257138}
   resultCanvasPrefab: {fileID: 3408435261771177193, guid: aa9c1092c2d43492c84a8060c7ecaf77, type: 3}
   gameOverCanvasPrefab: {fileID: 1621363553936112063, guid: 6e358205deadd4a24b23d95553728296, type: 3}
-  playerMovementScript: {fileID: 1819064666}
+  playerMovementScript: {fileID: 297806589735611920}
   inventoryUI: {fileID: 153551695}
   startButton: {fileID: 1253110871}
 --- !u!4 &1919855950
@@ -1124,6 +1113,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 40354702815634139, guid: 296af480ffd3c45d88c61c902153af1f, type: 3}
+      propertyPath: viewCamera
+      value: 
+      objectReference: {fileID: 685976890}
     - target: {fileID: 6283401892467778083, guid: 296af480ffd3c45d88c61c902153af1f, type: 3}
       propertyPath: m_Name
       value: Player0
@@ -1173,6 +1166,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 296af480ffd3c45d88c61c902153af1f, type: 3}
+--- !u!114 &297806589735611920 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 40354702815634139, guid: 296af480ffd3c45d88c61c902153af1f, type: 3}
+  m_PrefabInstance: {fileID: 297806589735611919}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 26903d78898774d3e9df817824fa84ed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1130597390004820421
 PrefabInstance:
   m_ObjectHideFlags: 0

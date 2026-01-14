@@ -14,7 +14,7 @@ public class UI3DModelViewer : MonoBehaviour
     [SerializeField] private Color backgroundColor = new Color(0, 0, 0, 0); // 背景色（透明）
 
     // 内部で使う変数
-    private GameObject studioObject; // 生成したスタジオ（親）
+    private GameObject studioObject; // 生成したスタジオ
     private Camera studioCamera;
     private RenderTexture renderTexture;
     private RawImage targetImage;
@@ -31,22 +31,22 @@ public class UI3DModelViewer : MonoBehaviour
     {
         targetImage = GetComponent<RawImage>();
 
-        // 1. 専用のRenderTextureをメモリ上に生成（256x256）
+        // 専用のRenderTextureをメモリ上に生成（256x256）
         renderTexture = new RenderTexture(256, 256, 16, RenderTextureFormat.ARGB32);
         renderTexture.Create();
 
-        // 2. UI（RawImage）にセット
+        // UI（RawImage）にセット
         targetImage.texture = renderTexture;
 
-        // 3. 撮影スタジオの場所を決める（個数ごとにY座標をずらして重なり防止）
+        // 撮影スタジオの場所を決める（個数ごとにY座標をずらして重なり防止）
         instanceCount++;
         Vector3 studioPos = new Vector3(0, -1000 - (instanceCount * 50), 0);
 
-        // 4. スタジオ（親）を作成
+        // スタジオを作成
         studioObject = new GameObject("IconStudio_" + gameObject.name);
         studioObject.transform.position = studioPos;
 
-        // 5. カメラを作成してスタジオに入れる
+        // カメラを作成してスタジオに入れる
         GameObject camObj = new GameObject("StudioCamera");
         camObj.transform.SetParent(studioObject.transform);
         camObj.transform.localPosition = new Vector3(0, 0, -5); // モデルの手前に配置
@@ -56,16 +56,13 @@ public class UI3DModelViewer : MonoBehaviour
         studioCamera.backgroundColor = backgroundColor;
         studioCamera.targetTexture = renderTexture; // 映像の送り先
 
-        // 6. モデルを生成してスタジオに入れる
+        // モデルを生成してスタジオに入れる
         if (modelPrefab != null)
         {
             GameObject model = Instantiate(modelPrefab, studioObject.transform);
             model.transform.localPosition = modelOffset;
             model.transform.localEulerAngles = modelRotation;
             model.transform.localScale = Vector3.one * modelScale;
-
-            // もしモデルが動くスクリプトを持っていたら、ここで制御も可能
-            // 回転させたいなら回転スクリプトをAddComponentするなど
         }
     }
 

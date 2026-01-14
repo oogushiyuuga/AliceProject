@@ -11,7 +11,7 @@ public class PlacedObject : MonoBehaviour
     private float lastTapTime = 0f;
     private const float doubleTapInterval = 0.3f;
 
-    // 親（Spawner）をセットする関数
+    // Spawnerをセットする関数
     public void Setup(DragDropSpawner spawner)
     {
         mySpawner = spawner;
@@ -22,10 +22,10 @@ public class PlacedObject : MonoBehaviour
         originalPos = transform.position;
     }
 
-    // ドラッグ中（指でなぞっている間）
+    // ドラッグ中
     void OnMouseDrag()
     {
-        // アクションフェーズ中は触れないようにガード
+        // アクションフェーズ中は触れないように
         if (GameManager.Instance.CurrentState != GameManager.GameState.Placement) return;
         
         // Spawnerの設定がないとグリッド計算できないので中断
@@ -35,8 +35,6 @@ public class PlacedObject : MonoBehaviour
 
         // 自分の当たり判定を一時的に切る（レイキャストが自分に当たらないように）
         SetColliderEnabled(false);
-
-        // --- 移動処理 ---
 
         // スマホのタッチ位置、またはマウス位置へレイを飛ばす
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -72,7 +70,7 @@ public class PlacedObject : MonoBehaviour
         {
             isDragging = false;
 
-            // インベントリの上で離したか？
+            // インベントリの上で離したか判定
             if (IsPointerOverUI())
             {
                 Debug.Log("UIへ戻したので削除");
@@ -80,7 +78,7 @@ public class PlacedObject : MonoBehaviour
                 return;
             }
 
-            // 置ける場所かどうか
+            // 置ける場所か判定
             if (!IsPositionValid())
             {
                 // 置けないなら、元の位置に戻す
@@ -97,7 +95,7 @@ public class PlacedObject : MonoBehaviour
         {
             // ドラッグせずにその場で指を離した（＝タップ）
             
-            // ダブルタップかどうか
+            // ダブルタップか判定
             float timeSinceLastTap = Time.time - lastTapTime;
             
             if (timeSinceLastTap < doubleTapInterval)
@@ -123,7 +121,7 @@ public class PlacedObject : MonoBehaviour
         Destroy(gameObject);
     }
 
-    // コライダのオンオフ切り替え（子要素も含めて一括）
+    // コライダのオンオフ切り替え
     private void SetColliderEnabled(bool isEnabled)
     {
         Collider[] cols = GetComponentsInChildren<Collider>();
@@ -143,7 +141,7 @@ public class PlacedObject : MonoBehaviour
         
         foreach (var c in hitColliders)
         {
-            // 自分自身（と自分の子供）以外に当たっていたらNG
+            // 自分自身以外に当たっていたら置けない
             if (c.transform.root != transform.root)
             {
                 return false; 
@@ -152,7 +150,7 @@ public class PlacedObject : MonoBehaviour
         return true;
     }
 
-    // スマホ・PC両対応の「UIに触れているか」判定メソッド
+    // UIに触れているか判定メソッド
     private bool IsPointerOverUI()
     {
         // マウスの場合

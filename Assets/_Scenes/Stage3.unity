@@ -2135,6 +2135,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 40354702815634139, guid: 296af480ffd3c45d88c61c902153af1f, type: 3}
+      propertyPath: viewCamera
+      value: 
+      objectReference: {fileID: 2081611726}
     - target: {fileID: 6283401892467778083, guid: 296af480ffd3c45d88c61c902153af1f, type: 3}
       propertyPath: m_Name
       value: Player0
@@ -2186,13 +2190,13 @@ PrefabInstance:
   m_SourcePrefab: {fileID: 100100000, guid: 296af480ffd3c45d88c61c902153af1f, type: 3}
 --- !u!114 &1967380229 stripped
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7395526481800108267, guid: 296af480ffd3c45d88c61c902153af1f, type: 3}
+  m_CorrespondingSourceObject: {fileID: 40354702815634139, guid: 296af480ffd3c45d88c61c902153af1f, type: 3}
   m_PrefabInstance: {fileID: 1967380228}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2f1451b71dcce432c94b39ca493e225b, type: 3}
+  m_Script: {fileID: 11500000, guid: 26903d78898774d3e9df817824fa84ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1001 &2021614239
@@ -2439,7 +2443,7 @@ MonoBehaviour:
   m_StreamingVersion: 20241001
   m_LegacyPriority: 0
   Target:
-    TrackingTarget: {fileID: 2102877361}
+    TrackingTarget: {fileID: 0}
     LookAtTarget: {fileID: 0}
     CustomLookAtTarget: 0
   Lens:
@@ -2477,11 +2481,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!4 &2102877361 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 6995549325461484407, guid: 296af480ffd3c45d88c61c902153af1f, type: 3}
-  m_PrefabInstance: {fileID: 1967380228}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

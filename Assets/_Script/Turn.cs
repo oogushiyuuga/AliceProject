@@ -21,7 +21,7 @@ public class Turn : MonoBehaviour
         {
             isActivated = true;
             
-            // 1. プレイヤーを回転させる
+            // プレイヤーを回転させる
             other.transform.Rotate(0, turnAngle, 0);
 
             // 回転後の角度を90度単位に補正する
