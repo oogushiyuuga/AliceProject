@@ -210,10 +210,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: BasickInventory
       objectReference: {fileID: 0}
-    - target: {fileID: 1205552527437084445, guid: 3234cd4e0743f4803a01be4833d54dd5, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 2146746436556801230, guid: 3234cd4e0743f4803a01be4833d54dd5, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
