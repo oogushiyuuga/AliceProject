@@ -20,6 +20,7 @@ public class GameManager : MonoBehaviour
     public enum GameState { Placement, Action, Result, GameOver }
     public GameState CurrentState { get; private set; }
     private GameObject currentResultCanvas;
+    
 
     void Awake()
     {
@@ -35,7 +36,17 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         SwitchToPlacementPhase();
-        AudioManager.Instance.PlayBGM("BGM");
+
+        string sceneName = SceneManager.GetActiveScene().name;
+
+        if (sceneName == "ClearScene") // 特別ステージのシーン名
+        {
+            AudioManager.Instance.PlayBGM("shiningstar");
+        }
+        else
+        {
+            AudioManager.Instance.PlayBGM("BGM");
+        }
     }
 
     // 設置フェーズへ切り替え
@@ -116,6 +127,13 @@ public class GameManager : MonoBehaviour
             // プレハブを生成（親指定なし＝シーンのルートに生成）
             currentResultCanvas = Instantiate(resultCanvasPrefab);
         }
+
+        string currentSceneName = SceneManager.GetActiveScene().name;
+        
+        string saveKey = "Clear_" + currentSceneName;
+
+        PlayerPrefs.SetInt(saveKey, 1);
+        PlayerPrefs.Save();
 
         #if UNITY_STANDALONE || UNITY_EDITOR
         Cursor.visible = true;
