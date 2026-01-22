@@ -8,60 +8,86 @@ public class WindMove : MonoBehaviour
     [SerializeField] private float windZ = 0f;
 
     [Header("初期状態")]
-    [SerializeField] private bool isWindActive = true; 
+    [Tooltip("チェックを入れると正方向、外すと逆方向から始まります")]
+    [SerializeField] private bool startWithNormalDirection = true; 
 
-    [Header("エフェクト")]
+    [Header("見た目の移動設定")]
+    [Tooltip("動かす対象（扇風機とパーティクルの親）")]
+    [SerializeField] private Transform visualObject;
+    
+    [Tooltip("正方向の時の場所と向き（空のオブジェクトを割り当て）")]
+    [SerializeField] private Transform normalMarker;
+    
+    [Tooltip("逆方向の時の場所と向き（空のオブジェクトを割り当て）")]
+    [SerializeField] private Transform reverseMarker;
+
+    [Header("エフェクト制御")]
     [SerializeField] private ParticleSystem windParticle;
     [SerializeField] private FanRound fanScript;
 
+    // 風の向き倍率 (1 = 通常, -1 = 逆)
+    private float directionMultiplier = 1.0f;
+
     void Start()
     {
+        // 初期状態の設定
+        directionMultiplier = startWithNormalDirection ? 1.0f : -1.0f;
         UpdateEffect();
     }
 
     private void OnTriggerStay(Collider other)
     {
-        if (!isWindActive) return;
-
         Rigidbody otherRigidbody = other.gameObject.GetComponent<Rigidbody>();
         if (otherRigidbody != null)
         {
-            otherRigidbody.AddForce(windX, windY, windZ, ForceMode.Acceleration);
+            // 設定値 × 向き倍率 で力を加える
+            otherRigidbody.AddForce(
+                windX * directionMultiplier,
+                windY * directionMultiplier,
+                windZ * directionMultiplier,
+                ForceMode.Acceleration
+            );
         }
     }
 
     // スイッチから呼ぶ関数
     public void ToggleWind()
     {
-        isWindActive = !isWindActive;
+        // 1 と -1 を入れ替える
+        directionMultiplier *= -1.0f;
         UpdateEffect();
     }
 
     // 強制指定用
-    public void SetWind(bool active)
+    public void SetWindDirection(bool isNormal)
     {
-        isWindActive = active;
+        directionMultiplier = isNormal ? 1.0f : -1.0f;
         UpdateEffect();
     }
 
-    // パーティクルを再生/停止する
+    // 見た目（位置・回転・パーティクル）を更新
     private void UpdateEffect()
     {
+        // --- 1. 場所と向きの移動 ---
+        if (visualObject != null && normalMarker != null && reverseMarker != null)
+        {
+            // 現在の向きに合わせてターゲット（マーカー）を決める
+            Transform targetMarker = (directionMultiplier > 0f) ? normalMarker : reverseMarker;
+
+            // 扇風機をそのマーカーの位置と回転にワープさせる
+            visualObject.position = targetMarker.position;
+            visualObject.rotation = targetMarker.rotation;
+        }
+
+        // --- 2. エフェクト制御 ---
         if (windParticle != null)
         {
-            if (isWindActive)
-            {
-                if (!windParticle.isPlaying) windParticle.Play();
-            }
-            else
-            {
-                windParticle.Stop();
-            }
+            if (!windParticle.isPlaying) windParticle.Play();
         }
 
         if (fanScript != null)
         {
-            fanScript.SetRunning(isWindActive);
+            fanScript.SetRunning(true);
         }
     }
 }

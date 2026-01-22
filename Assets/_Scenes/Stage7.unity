@@ -573,15 +573,23 @@ PrefabInstance:
     - target: {fileID: 2217682745703274856, guid: 3234cd4e0743f4803a01be4833d54dd5, type: 3}
       propertyPath: modelPrefab
       value: 
-      objectReference: {fileID: 6421504822216798175, guid: b7e51484d72e84028a1a1db27ef5407b, type: 3}
+      objectReference: {fileID: 7566646548621251107, guid: e80f8e05012fa48e788486238f1cc316, type: 3}
     - target: {fileID: 2783810653597241000, guid: 3234cd4e0743f4803a01be4833d54dd5, type: 3}
       propertyPath: objectPrefab
       value: 
       objectReference: {fileID: 547240449556642628, guid: 5cdf9709f2bd04fd78a0058a89e5521a, type: 3}
+    - target: {fileID: 4469272788014066971, guid: 3234cd4e0743f4803a01be4833d54dd5, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4469272788014066971, guid: 3234cd4e0743f4803a01be4833d54dd5, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 40
+      objectReference: {fileID: 0}
     - target: {fileID: 6048524556843713979, guid: 3234cd4e0743f4803a01be4833d54dd5, type: 3}
       propertyPath: objectPrefab
       value: 
-      objectReference: {fileID: 6421504822216798175, guid: b7e51484d72e84028a1a1db27ef5407b, type: 3}
+      objectReference: {fileID: 7566646548621251107, guid: e80f8e05012fa48e788486238f1cc316, type: 3}
     - target: {fileID: 6579822567438463851, guid: 3234cd4e0743f4803a01be4833d54dd5, type: 3}
       propertyPath: m_AdditionalShaderChannelsFlag
       value: 25
@@ -1131,7 +1139,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -130, y: 0}
+  m_AnchoredPosition: {x: -96, y: -38.2}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1075496041
