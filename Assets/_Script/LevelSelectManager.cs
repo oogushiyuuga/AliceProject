@@ -7,6 +7,8 @@ public class LevelSelectManager : MonoBehaviour
     // 引数の stageNum に 1 や 2 を入れて使います
     public void OnStageButtonClicked(int stageNum)
     {
+        AudioManager.Instance.PlaySE("Select");
+        
         // シーンの名前を作成（例: "Stage" + 1 → "Stage1"）
         string sceneName = "Stage" + stageNum;
 

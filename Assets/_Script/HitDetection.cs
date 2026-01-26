@@ -15,6 +15,7 @@ public class HitDetection : MonoBehaviour
                 // 指定した木箱を消す
                 if (targetDoor != null)
                 {
+                    AudioManager.Instance.PlaySE("BreakBox");
                     targetDoor.SetActive(false);
                 }
             }

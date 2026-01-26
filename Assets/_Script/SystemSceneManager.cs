@@ -6,6 +6,7 @@ public class SystemSceneManager : MonoBehaviour
     // スタートボタンを押した時
     public void OnStartClicked()
     {
+        AudioManager.Instance.PlaySE("Start");
         SceneManager.LoadScene("StageSelectScene");
     }
 

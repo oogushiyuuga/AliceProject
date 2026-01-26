@@ -85,6 +85,7 @@ public class ConfirmDialogController : MonoBehaviour
 
     public void OnTapOK()
     {
+        AudioManager.Instance.PlaySE("Button");
         onOK?.Invoke();
         Destroy(gameObject);
     }

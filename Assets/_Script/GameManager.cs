@@ -74,6 +74,7 @@ public class GameManager : MonoBehaviour
     // アクションフェーズへ切り替え（ボタンから呼ぶ）
     public void OnStartActionButtonClicked()
     {
+        AudioManager.Instance.PlaySE("GameStart");
         CurrentState = GameState.Action;
 
         if (placementCamera != null) placementCamera.SetActive(false);

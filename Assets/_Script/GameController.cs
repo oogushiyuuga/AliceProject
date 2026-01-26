@@ -13,6 +13,8 @@ public class GameController : MonoBehaviour
             pauseCanvas.SetActive(false);
         }
 
+        AudioManager.Instance.PlaySE("Button");
+
         var options = new ConfirmDialogOptions
         {
             PrefabPath = "Canvas_Explain", // どのプレハブを使うか指定
@@ -27,6 +29,8 @@ public class GameController : MonoBehaviour
 
     public void Open_Credit()
     {
+        AudioManager.Instance.PlaySE("Button");
+
         var options = new ConfirmDialogOptions
         {
             PrefabPath = "Canvas_Credit", 
@@ -37,6 +41,8 @@ public class GameController : MonoBehaviour
 
  public void Open_Pause()
     {
+        AudioManager.Instance.PlaySE("Button");
+
         var options = new ConfirmDialogOptions
         {
             PrefabPath = "Canvas_Pause", 
@@ -51,6 +57,8 @@ public class GameController : MonoBehaviour
         {
             pauseCanvas.SetActive(false);
         }
+
+        AudioManager.Instance.PlaySE("Button");
 
         var options = new ConfirmDialogOptions
         {

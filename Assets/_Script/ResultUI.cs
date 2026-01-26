@@ -5,6 +5,8 @@ public class ResultUI : MonoBehaviour
     // ボタンが押されたら実行される関数
     public void OnClickNextButton()
     {
+        AudioManager.Instance.PlaySE("Button");
+        
         // GameManagerのインスタンスを探して、次のステージへ進む処理を呼ぶ
         if (GameManager.Instance != null)
         {

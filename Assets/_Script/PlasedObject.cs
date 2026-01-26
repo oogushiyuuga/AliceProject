@@ -89,6 +89,8 @@ public class PlacedObject : MonoBehaviour
             {
                 // 置けるなら、ここを新しい「定位置」として記憶
                 originalPos = transform.position;
+
+                AudioManager.Instance.PlaySE("PickUp");
             }
         }
         else

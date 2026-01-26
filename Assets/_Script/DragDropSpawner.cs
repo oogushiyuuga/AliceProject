@@ -54,6 +54,8 @@ public class DragDropSpawner : MonoBehaviour, IBeginDragHandler, IDragHandler, I
         // アイテムがなければドラッグできないようにする（念のため）
         if (itemCount <= 0) return;
 
+        AudioManager.Instance.PlaySE("Pon");
+
         originalParent = transform.parent;
         startPosition = transform.position;
 
@@ -107,6 +109,9 @@ public class DragDropSpawner : MonoBehaviour, IBeginDragHandler, IDragHandler, I
         if (canPlace && currentPreview != null && currentPreview.activeSelf)
         {
             SpawnObject(currentPreview.transform.position);
+
+            AudioManager.Instance.PlaySE("Pon");
+
         }
 
         if (currentPreview != null) Destroy(currentPreview);
@@ -144,6 +149,8 @@ public class DragDropSpawner : MonoBehaviour, IBeginDragHandler, IDragHandler, I
 
     public void ReturnItem()
     {
+        AudioManager.Instance.PlaySE("Pon");
+
         itemCount++;
         UpdateCountText();
 
