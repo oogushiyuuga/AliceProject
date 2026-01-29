@@ -8,6 +8,7 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance { get; private set; }
 
     [SerializeField] private GameObject placementCamera;
+    [SerializeField] private GameObject placementCamera2;
     [SerializeField] private GameObject playerCamera;
     [SerializeField] private GameObject resultCamera;
 
@@ -55,6 +56,8 @@ public class GameManager : MonoBehaviour
         CurrentState = GameState.Placement;
         if (placementCamera != null) placementCamera.SetActive(true);
 
+        if (placementCamera2 != null) placementCamera2.SetActive(false);
+
         if (playerCamera != null) playerCamera.SetActive(false);
 
         if(resultCamera != null) resultCamera.SetActive(false);
@@ -78,6 +81,8 @@ public class GameManager : MonoBehaviour
         CurrentState = GameState.Action;
 
         if (placementCamera != null) placementCamera.SetActive(false);
+
+        if (placementCamera2 != null) placementCamera2.SetActive(false);
         
         if (playerCamera != null) playerCamera.SetActive(true);
         
@@ -107,6 +112,8 @@ public class GameManager : MonoBehaviour
         AudioManager.Instance.PlaySE("GameClear");
 
         if (placementCamera != null) placementCamera.SetActive(false);
+
+        if (placementCamera2 != null) placementCamera2.SetActive(false);
         
         if (playerCamera != null) playerCamera.SetActive(false);
         
