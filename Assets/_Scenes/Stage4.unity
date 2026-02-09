@@ -1628,7 +1628,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1205552527437084445, guid: 3234cd4e0743f4803a01be4833d54dd5, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1272969592065286423, guid: 3234cd4e0743f4803a01be4833d54dd5, type: 3}
       propertyPath: m_SizeDelta.y
@@ -3240,6 +3240,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   placementCamera: {fileID: 618708998}
+  placementCamera2: {fileID: 0}
   playerCamera: {fileID: 1312333770}
   resultCamera: {fileID: 991498285}
   resultCanvasPrefab: {fileID: 3408435261771177193, guid: aa9c1092c2d43492c84a8060c7ecaf77, type: 3}
