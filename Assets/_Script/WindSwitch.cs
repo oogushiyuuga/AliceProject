@@ -31,7 +31,7 @@ public class WindSwitch : MonoBehaviour
                 // 1回限定なら使用済みにする
                 if (oneTimeOnly) hasUsed = true;
 
-                // 押した感触（色変えなど）
+                // 押した後のオブジェクト変化
                 ChangeColor();
             }
         }

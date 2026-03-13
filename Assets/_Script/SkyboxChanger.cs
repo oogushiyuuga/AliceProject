@@ -28,11 +28,10 @@ public class SkyboxChanger : MonoBehaviour
     {
         if (newSkyboxMaterial != null)
         {
-            // 1. Skyboxを入れ替える
+            // Skyboxを入れ替える
             RenderSettings.skybox = newSkyboxMaterial;
 
-            // 2. 環境光（ライティング）を更新する【重要】
-            // これをしないと、空は夜なのにキャラへの照り返しが昼のまま、みたいになります
+            // 環境光（ライティング）を更新する
             DynamicGI.UpdateEnvironment();
         }
     }

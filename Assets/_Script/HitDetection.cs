@@ -3,7 +3,7 @@ using UnityEngine;
 public class HitDetection : MonoBehaviour
 {
     [SerializeField] private float sizeThreshold = 1.3f;
-    [SerializeField] private GameObject targetDoor; // 消したいドア（壁）を指定
+    [SerializeField] private GameObject targetObject; // 消したいオブジェクトを指定
 
     void OnTriggerEnter(Collider other)
     {
@@ -13,10 +13,10 @@ public class HitDetection : MonoBehaviour
             if (other.transform.localScale.x > sizeThreshold)
             {
                 // 指定した木箱を消す
-                if (targetDoor != null)
+                if (targetObject != null)
                 {
                     AudioManager.Instance.PlaySE("BreakBox");
-                    targetDoor.SetActive(false);
+                    targetObject.SetActive(false);
                 }
             }
         }

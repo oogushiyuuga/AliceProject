@@ -29,7 +29,7 @@ public class Turn : MonoBehaviour
             float roundedY = Mathf.Round(currentEuler.y / 90f) * 90f;
             other.transform.rotation = Quaternion.Euler(0, roundedY, 0);
 
-            // 曲がった後に「通路の端っこ」を歩かないようにする
+            // 曲がった後に通路の端っこを歩かないようにする
             SnapToGrid(other.transform); 
 
             Debug.Log("方向転換しました: " + turnAngle);

@@ -31,11 +31,11 @@ public class UI3DModelViewer : MonoBehaviour
     {
         targetImage = GetComponent<RawImage>();
 
-        // 専用のRenderTextureをメモリ上に生成（256x256）
+        // 専用のRenderTextureをメモリ上に生成
         renderTexture = new RenderTexture(256, 256, 16, RenderTextureFormat.ARGB32);
         renderTexture.Create();
 
-        // UI（RawImage）にセット
+        // UIにセット
         targetImage.texture = renderTexture;
 
         // 撮影スタジオの場所を決める（個数ごとにY座標をずらして重なり防止）

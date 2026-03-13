@@ -40,7 +40,7 @@ public class GameManager : MonoBehaviour
 
         string sceneName = SceneManager.GetActiveScene().name;
 
-        if (sceneName == "ClearScene") // 特別ステージのシーン名
+        if (sceneName == "ClearScene")
         {
             AudioManager.Instance.PlayBGM("shiningstar");
         }
@@ -107,6 +107,7 @@ public class GameManager : MonoBehaviour
 
         Debug.Log("ゲームクリア！");
         CurrentState = GameState.Result;
+        Tip.ResetGameOverCount();
         
         AudioManager.Instance.StopBGM();
         AudioManager.Instance.PlaySE("GameClear");
@@ -173,7 +174,7 @@ public class GameManager : MonoBehaviour
     {
         if (CurrentState == GameState.Result || CurrentState == GameState.GameOver) return;
 
-        Debug.Log("ゲームオーバー...");
+        Debug.Log("ゲームオーバー");
         CurrentState = GameState.GameOver;
 
         if (gameOverCanvasPrefab != null)
@@ -187,7 +188,7 @@ public class GameManager : MonoBehaviour
         if (inventoryUI != null) inventoryUI.SetActive(false);
     }
 
-    // リトライ（今のシーンを読み込み直す）
+    // リトライ
     public void RetryStage()
     {
         string currentSceneName = SceneManager.GetActiveScene().name;
@@ -197,6 +198,7 @@ public class GameManager : MonoBehaviour
     // ステージ選択へ戻る
     public void GoToStageSelect()
     {
+        Tip.ResetGameOverCount();
         AudioManager.Instance.StopBGM();
         SceneManager.LoadScene("StageSelectScene");
     }

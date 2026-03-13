@@ -8,25 +8,18 @@ public class WindMove : MonoBehaviour
     [SerializeField] private float windZ = 0f;
 
     [Header("初期状態")]
-    [Tooltip("チェックを入れると正方向、外すと逆方向から始まります")]
     [SerializeField] private bool startWithNormalDirection = true; 
 
     [Header("見た目の移動設定")]
-    [Tooltip("動かす対象（扇風機とパーティクルの親）")]
-    [SerializeField] private Transform visualObject;
-    
-    [Tooltip("正方向の時の場所と向き（空のオブジェクトを割り当て）")]
-    [SerializeField] private Transform normalMarker;
-    
-    [Tooltip("逆方向の時の場所と向き（空のオブジェクトを割り当て）")]
-    [SerializeField] private Transform reverseMarker;
+    [SerializeField] private Transform visualObject; //親オブジェクト
+    [SerializeField] private Transform normalMarker; //正方向の時の場所と向き(空オブジェクトを入れる)
+    [SerializeField] private Transform reverseMarker;  //逆方向の時の場所と向き(ゞ)
 
     [Header("エフェクト制御")]
     [SerializeField] private ParticleSystem windParticle;
     [SerializeField] private FanRound fanScript;
 
-    // 風の向き倍率 (1 = 通常, -1 = 逆)
-    private float directionMultiplier = 1.0f;
+    private float directionMultiplier = 1.0f; // 風の向き倍率 (1 = 通常, -1 = 逆)
 
     void Start()
     {
@@ -68,7 +61,7 @@ public class WindMove : MonoBehaviour
     // 見た目（位置・回転・パーティクル）を更新
     private void UpdateEffect()
     {
-        // --- 1. 場所と向きの移動 ---
+        //場所と向きの移動
         if (visualObject != null && normalMarker != null && reverseMarker != null)
         {
             // 現在の向きに合わせてターゲット（マーカー）を決める
@@ -79,7 +72,7 @@ public class WindMove : MonoBehaviour
             visualObject.rotation = targetMarker.rotation;
         }
 
-        // --- 2. エフェクト制御 ---
+        //エフェクト制御
         if (windParticle != null)
         {
             if (!windParticle.isPlaying) windParticle.Play();

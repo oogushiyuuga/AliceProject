@@ -62,7 +62,7 @@ public class GameController : MonoBehaviour
 
         var options = new ConfirmDialogOptions
         {
-            PrefabPath = "Canvas_Settings", // どのプレハブを使うか指定
+            PrefabPath = "Canvas_Settings",
             OnOK = () => 
             { 
                 Result.text = "";

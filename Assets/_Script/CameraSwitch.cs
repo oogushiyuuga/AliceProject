@@ -5,8 +5,7 @@ public class CameraSwitch : MonoBehaviour
     public GameObject[] cameraArray; // カメラを取得する用の配列を作成する
     bool judgment;  // カメラをオンにするかどうかを判定する変数
 
-    // ボタンをクリックした場合
-    public void OnButtonClick(int activeCamera) // 引数で整数を指定する
+    public void OnButtonClick(int activeCamera)
     {
         // カメラの配列の数を繰り返す処理
         for (int i = 0; i < cameraArray.Length; i++)

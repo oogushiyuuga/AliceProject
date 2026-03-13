@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class Switch : MonoBehaviour
 {
+    //使ってないけど今後使うかも
     [SerializeField] private GameObject SwitchFloor;
     [SerializeField] private float floorAngle = 180f;
     [SerializeField] private Collider BoxCol;

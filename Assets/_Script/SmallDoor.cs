@@ -3,7 +3,7 @@ using UnityEngine;
 public class SmallDoorSensor : MonoBehaviour
 {
     [SerializeField] private float sizeThreshold = 0.8f;
-    [SerializeField] private GameObject targetDoor; // 消したいドア（壁）を指定
+    [SerializeField] private GameObject targetDoor; // 消したいドアを指定
 
     void OnTriggerEnter(Collider other)
     {

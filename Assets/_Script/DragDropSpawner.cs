@@ -51,7 +51,7 @@ public class DragDropSpawner : MonoBehaviour, IBeginDragHandler, IDragHandler, I
 
     public void OnBeginDrag(PointerEventData eventData)
     {
-        // アイテムがなければドラッグできないようにする（念のため）
+        // アイテムがなければドラッグできないようにする
         if (itemCount <= 0) return;
 
         AudioManager.Instance.PlaySE("Pon");
@@ -82,7 +82,7 @@ public class DragDropSpawner : MonoBehaviour, IBeginDragHandler, IDragHandler, I
             {
                 currentPreview.SetActive(true);
                 
-                // 床の高さ(0f)に固定して計算
+                // 床の高さに固定して計算
                 Vector3 snappedPos = GetSnappedPosition(hit.point); 
                 currentPreview.transform.position = snappedPos;
 
@@ -195,7 +195,7 @@ public class DragDropSpawner : MonoBehaviour, IBeginDragHandler, IDragHandler, I
     {
         float x = Mathf.Round(targetPosition.x / gridSize) * gridSize;
         float z = Mathf.Round(targetPosition.z / gridSize) * gridSize;
-        // 床の高さ（0f）に固定
+        // 床の高さに固定
         return new Vector3(x, placeHeight, z); 
     }
 
