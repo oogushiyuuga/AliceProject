@@ -57,7 +57,7 @@ public class Animetioninventory : MonoBehaviour
             timer += Time.deltaTime;
             float percent = Mathf.Clamp01(timer / animDuration);
             
-            // カーブを使って動きに強弱をつける（「落ちてくる」感）
+            // カーブを使って動きに強弱をつける
             float curveValue = motionCurve.Evaluate(percent);
 
             // 現在位置を計算

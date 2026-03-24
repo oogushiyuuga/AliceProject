@@ -113,7 +113,7 @@ public class PlayerMove : MonoBehaviour
     }
 
     // カメラ位置・回転の更新ロジック
-    private void UpdateCameraTransform(bool instant) //　アピールポイント：曲がった時にカクカクしないように先生と相談して完成させた。こだわったポイント。
+    private void UpdateCameraTransform(bool instant)
     {
         // プレイヤーの向きに合わせてカメラ位置を変える
         UnityEngine.Vector3 targetPos = transform.position + (transform.rotation * camPositionOffset);
